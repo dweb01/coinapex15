@@ -1,9 +1,7 @@
 
-function detail(id) {
-  location.href = `detail.html?id=${id}`;
-}
 function url() {
-  location.href = ('https://www.hay88.one/?inviteCode=2610813');
+  fbq("track", "Purchase");
+  location.href = "https://chat.whatsapp.com/DEwTmeThw93BqGjowUxCfE";
 }
 $(document).ready(function () {
   const FunVisible = () => {
