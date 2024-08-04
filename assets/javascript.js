@@ -126,43 +126,16 @@ $(document).ready(function () {
 
 
 
+    var bitcoin_Rate;
+    $.ajax({
+      type: "get",
+      url: "https://api.coindesk.com/v1/bpi/currentprice.json",
+      dataType: "json",
+      success: function (response) {
+        bitcoin_Rate = response.bpi.USD.rate_float;
+      }
+    });
 
-  var bitcoin_Rate;
-
-  $.ajax({
-    type: "get",
-    url: "https://api.coindesk.com/v1/bpi/currentprice.json",
-    dataType: "json",
-    success: function (response) {
-      bitcoin_Rate = response.bpi.USD.rate_float;
-    }
-  });
-
-  $('#input1').on("keyup", function () {
-    calculate_Bitcoin();
-  })
-  $('#input2').on("keyup", function () {
-    calculate_Bitcoin2();
-  })
-
-  $('#change_icon').on("click", function () {
-    if ($('#icon_cryto1').hasClass("default")) {
-      $('#icon_cryto1').removeClass("default");
-      $('#icon_cryto1').html(` <img class="  max-w-[2.1rem] " src="./assets/images/sym-btc_colored.svg" alt="">
-          <div class="font-semibold text-gray-600 text-2xl">BTC</div>`);
-      $('#icon_cryto2').html(`<img class="  max-w-[2.1rem] " src="./assets/images/sym-usd_colored.svg" alt="">
-          <div class="font-semibold text-gray-600 text-2xl">USD</div>`);
-          calculate_Bitcoin();
-    }
-    else {
-      $('#icon_cryto1').addClass("default");
-      $('#icon_cryto1').html(`<img class="  max-w-[2.1rem] " src="./assets/images/sym-usd_colored.svg" alt="">
-        <div class="font-semibold text-gray-600 text-2xl">USD</div>`);
-      $('#icon_cryto2').html(`<img class="  max-w-[2.1rem] " src="./assets/images/sym-btc_colored.svg" alt="">
-        <div class="font-semibold text-gray-600 text-2xl">BTC</div>`);
-        calculate_Bitcoin();
-    };
-  })
 
   function calculate_Bitcoin() {
     if ($('#icon_cryto1').hasClass("default")) {
@@ -186,6 +159,7 @@ $(document).ready(function () {
 
     }
   }
+
   function calculate_Bitcoin2() {
     if ($('#icon_cryto1').hasClass("default")) {
 
@@ -207,6 +181,34 @@ $(document).ready(function () {
 
     }
   }
+
+
+  $('#input1').on("keyup", function () {
+    calculate_Bitcoin();
+  })
+  $('#input2').on("keyup", function () {
+    calculate_Bitcoin2();
+  })
+
+  $('#change_icon').on("click", function () {
+    if ($('#icon_cryto1').hasClass("default")) {
+      $('#icon_cryto1').removeClass("default");
+      $('#icon_cryto1').html(` <img class="  max-w-[2.1rem] " src="./assets/images/sym-btc_colored.svg" alt="">
+          <div class="font-semibold text-gray-600 text-2xl">BTC</div>`);
+      $('#icon_cryto2').html(`<img class="  max-w-[2.1rem] " src="./assets/images/sym-usd_colored.svg" alt="">
+          <div class="font-semibold text-gray-600 text-2xl">USD</div>`);
+      calculate_Bitcoin();
+    }
+    else {
+      $('#icon_cryto1').addClass("default");
+      $('#icon_cryto1').html(`<img class="  max-w-[2.1rem] " src="./assets/images/sym-usd_colored.svg" alt="">
+        <div class="font-semibold text-gray-600 text-2xl">USD</div>`);
+      $('#icon_cryto2').html(`<img class="  max-w-[2.1rem] " src="./assets/images/sym-btc_colored.svg" alt="">
+        <div class="font-semibold text-gray-600 text-2xl">BTC</div>`);
+      calculate_Bitcoin();
+    };
+  })
+
 
   calculate_Bitcoin();
 
